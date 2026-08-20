@@ -13,3 +13,4 @@ downloads/
 *_chunks/
 .cache/
 "@ | Set-Content .gitignore
+tempCodeRunnerFile.py
