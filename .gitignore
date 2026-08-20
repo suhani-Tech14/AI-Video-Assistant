@@ -1,0 +1,15 @@
+@"
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.env
+downloads/
+*.wav
+*.mp3
+*.m4a
+*.webm
+*_chunks/
+.cache/
+"@ | Set-Content .gitignore
