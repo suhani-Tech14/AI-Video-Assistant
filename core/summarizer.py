@@ -1,4 +1,4 @@
-from langchain_mistralai import ChatMistralAI
+from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -7,8 +7,12 @@ from langchain_core.runnables import RunnablePassthrough, RunnableLambda
 import os 
 
 def get_llm():
-    return ChatMistralAI(model = "mistral-small-latest", mistral_api_key = os.getenv("MISTRAL_API_KEY"),temperature=0.3)
-
+    return ChatGroq(
+        model="openai/gpt-oss-20b",
+        api_key=os.getenv("GROQ_API_KEY"),
+        temperature=0.3,
+        max_retries=2,
+    )
 
 def split_transcript(transcript: str) -> list:
     splitter = RecursiveCharacterTextSplitter(
@@ -53,7 +57,7 @@ def summarize(transcript : str) -> str:
 
     return combined_chain.invoke(combined)
 
-def generate_title(transcipt : str) -> str:
+def generate_title(transcript : str) -> str:
     llm = get_llm()
 
     
@@ -72,7 +76,7 @@ def generate_title(transcipt : str) -> str:
         |StrOutputParser()
     )
 
-    return title_chain.invoke(transcipt[:2000])
+    return title_chain.invoke(transcript[:2000])
 
 
 

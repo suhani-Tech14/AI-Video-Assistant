@@ -1,97 +1,134 @@
 import os
-from langchain_mistralai import ChatMistralAI
+
+from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-from langchain_core.runnables import RunnablePassthrough, RunnableLambda
-from core.vector_store import build_vector_store, load_vector_store, get_retriever
+from langchain_core.runnables import RunnableLambda
+from operator import itemgetter
+
+from core.vector_store import (
+    build_vector_store,
+    load_vector_store,
+    get_retriever,
+)
+
 
 def get_llm():
-    return ChatMistralAI(
-        model="mistral-small-latest",
-        mistral_api_key=os.getenv("MISTRAL_API_KEY"),
+    api_key = os.getenv("GROQ_API_KEY")
+
+    if not api_key:
+        raise ValueError(
+            "Groq API key not found. Add GROQ_API_KEY to your .env file."
+        )
+
+    return ChatGroq(
+        model="openai/gpt-oss-20b",
+        api_key=api_key,
         temperature=0.3,
+        max_retries=2,
     )
 
 def format_docs(docs):
-    return "\n\n".join([doc.page_content for doc in docs])
-
-def build_rag_chain(transcript:str):
-
-    vector_store = build_vector_store(transcript)
-
-    retriever = get_retriever(vector_store, k = 4)
-
-    llm = get_llm()
-
-    prompt = ChatPromptTemplate.from_messages(
-
-        [(
-            "system",
-            """You are an expert meeting assistant. Answer the user's question 
-based ONLY on the meeting transcript context provided below.
-
-If the answer is not found in the context, say: 
-"I could not find this information in the meeting transcript."
-
-Always be concise and precise. If quoting someone, mention it clearly.
-
-Context from meeting transcript:
-{context}""",
-        ),
-        ("human", "{question}"),
-    ]
+    return "\n\n".join(
+        document.page_content
+        for document in docs
     )
 
-    #full LCEL Rag pipeline 
 
-    rag_chain = (
+def format_chat_history(chat_history):
+    if not chat_history:
+        return "No previous conversation."
 
-        {"context" : retriever | RunnableLambda(format_docs),
-         "question": RunnablePassthrough()
-         }
-         |prompt|llm|StrOutputParser()
+    return "\n\n".join(
+        f"User: {message['question']}\n"
+        f"Assistant: {message['answer']}"
+        for message in chat_history
     )
 
-    return rag_chain
 
-
-def load_rag_chain():
-    vector_store = load_vector_store()
-    retriver = get_retriever()
-
+def create_rag_chain(retriever):
     llm = get_llm()
+
     prompt = ChatPromptTemplate.from_messages([
         (
             "system",
-            """You are an expert meeting assistant. Answer the user's question 
-based ONLY on the meeting transcript context provided below.
+            """
+You are an expert video assistant.
 
-If the answer is not found in the context, say: 
-"I could not find this information in the meeting transcript."
+Answer the user's question using only the transcript context below.
 
-Always be concise and precise. If quoting someone, mention it clearly.
+Use the conversation history to understand follow-up questions such as:
+- "Explain that again."
+- "What did he mean by this?"
+- "Tell me more about the previous point."
 
-Context from meeting transcript:
-{context}""",
+If the answer is not present in the transcript context, say exactly:
+"I could not find this information in the video transcript."
+
+Do not invent facts.
+Be concise and precise.
+
+Conversation history:
+{chat_history}
+
+Transcript context:
+{context}
+""",
         ),
         ("human", "{question}"),
     ])
 
-    rag_chain = (
-        {
-            "context":  retriver| RunnableLambda(format_docs),
-            "question": RunnablePassthrough(),
-        }
-        | prompt
-        | llm
-        | StrOutputParser()
+    return (
+       
+    {
+        "context": itemgetter("question")
+        | retriever
+        | RunnableLambda(format_docs),
+
+        "question": itemgetter("question"),
+
+        "chat_history": RunnableLambda(
+            lambda data: format_chat_history(
+                data.get("chat_history", [])
+            )
+        ),
+    }
+    | prompt
+    | llm
+    | StrOutputParser()
+
     )
 
-    return rag_chain
+
+def build_rag_chain(transcript: str):
+    vector_store = build_vector_store(transcript)
+    retriever = get_retriever(vector_store, k=4)
+
+    return create_rag_chain(retriever)
 
 
-def ask_question(rag_chain, question:str) -> str:
-    print(f"Question : {question}")
-    answer = rag_chain.invoke(question)
-    print(f"answer :{answer}")
+def load_rag_chain():
+    vector_store = load_vector_store()
+    retriever = get_retriever(vector_store, k=4)
+
+    return create_rag_chain(retriever)
+
+
+def ask_question(
+    rag_chain,
+    question: str,
+    chat_history=None,
+) -> str:
+    if chat_history is None:
+        chat_history = []
+
+    print(f"Question: {question}")
+
+    answer = rag_chain.invoke({
+        "question": question,
+        "chat_history": chat_history,
+    })
+
+    print(f"Answer: {answer}")
+
     return answer
