@@ -1,44 +1,238 @@
-# ── AI Meeting Assistant ── requirements.txt ──────────────────────────────────
-# Python >= 3.10 recommended
+You are a LinkedIn profile strategist and early-career technology career coach.
 
-# ── Audio / Video acquisition ─────────────────────────────────────────────────
-yt-dlp>=2024.4.9                  # Download audio from YouTube URLs
-pydub>=0.25.1                     # Audio file manipulation / format conversion
-ffmpeg-python>=0.2.0              # FFmpeg bindings (FFmpeg binary must be installed separately)
+I am a student/early-career candidate transitioning from a DevOps-focused LinkedIn profile toward Data Science, Machine Learning, and AI/ML roles.
 
-# ── Speech-to-Text (local Whisper) ────────────────────────────────────────────
-openai-whisper>=20231117          # OpenAI Whisper (runs locally)
-torch>=2.2.0                      # PyTorch backend for Whisper
-torchaudio>=2.2.0                 # Audio utilities for PyTorch
+My goals are:
 
-# ── Translation (Hindi → English) ─────────────────────────────────────────────
-deep-translator>=1.11.4           # Lightweight translation wrapper (Google backend)
+1. Reposition my LinkedIn profile for entry-level or internship opportunities in:
+   - Data Science
+   - Machine Learning
+   - Artificial Intelligence
+   - Data Analytics
+   - AI Engineering
 
-# ── LLM Orchestration — LangChain LCEL + Mistral ──────────────────────────────
-langchain>=0.2.0
-langchain-core>=0.2.0
-langchain-community>=0.2.0
-langchain-mistralai>=0.1.0        # LangChain wrapper for Mistral API
-mistralai>=0.4.0                  # Official Mistral Python client
+2. Improve my LinkedIn search visibility using accurate keywords that recruiters use.
 
-# ── RAG Pipeline ──────────────────────────────────────────────────────────────
-chromadb>=0.5.0                   # Local vector store
-sentence-transformers>=3.0.0      # HuggingFace embedding models
-langchain-huggingface>=0.0.3      # LangChain ↔ HuggingFace embeddings bridge
-huggingface-hub>=0.23.0           # Model downloading from HuggingFace Hub
-tiktoken>=0.7.0                   # Token counting for text splitting
+3. Keep my existing DevOps background and projects visible because they are real and demonstrate cloud, deployment, automation, and engineering skills.
 
-# ── Streamlit UI ──────────────────────────────────────────────────────────────
-streamlit>=1.35.0
-streamlit-extras>=0.4.0           # Additional Streamlit widgets / utilities
-watchdog>=4.0.0                   # File-change watcher (improves Streamlit hot-reload)
+4. Present my existing projects honestly without inventing experience, achievements, metrics, internships, certifications, or technologies.
 
-# ── PDF & TXT Export ──────────────────────────────────────────────────────────
-reportlab>=4.2.0                  # PDF generation
-fpdf2>=2.7.9                      # Lightweight alternative PDF library
+5. Build a professional networking strategy to connect with:
+   - Data scientists
+   - Machine learning engineers
+   - AI engineers
+   - Data analysts
+   - Technical recruiters
+   - Hiring managers
+   - Alumni
+   - Employees at companies hiring for entry-level data and AI roles
 
-# ── Utilities ─────────────────────────────────────────────────────────────────
-python-dotenv>=1.0.0              # Load API keys from .env
-numpy>=1.26.0
-tqdm>=4.66.0                      # Progress bars
-requests>=2.32.0
+6. Help me engage with relevant posts before asking anyone about job opportunities.
+
+First, ask me for the following information before rewriting anything:
+
+- My current LinkedIn headline
+- My current About section
+- My current Education section
+- My current Experience section
+- My current Projects section
+- My current Skills section
+- My certifications
+- My GitHub URL
+- My portfolio URL, if available
+- My target job titles
+- My preferred locations
+- Whether I am seeking internships, full-time roles, or both
+- My actual technical skills
+- My strongest projects
+- Any measurable results that I can verify
+
+After I provide the information, produce the following:
+
+A. Profile positioning
+
+- Explain the best positioning for my transition from DevOps to Data Science and AI/ML.
+- Recommend one primary target role and two secondary target roles.
+- Explain which keywords should be prioritized and why.
+- Separate confirmed skills from skills I should learn next.
+
+B. Headline options
+
+Write five LinkedIn headline options.
+
+Each headline must:
+- Start with my current status or target role.
+- Include accurate Data Science/AI/ML keywords.
+- Preserve relevant DevOps/cloud strengths where useful.
+- Sound natural rather than keyword-stuffed.
+- Avoid claiming that I am already a senior professional.
+- Stay within LinkedIn’s headline length limit.
+
+Use this structure when appropriate:
+
+[Student or Target Role] | [Core Skills] | [Projects or Career Direction]
+
+C. About section
+
+Write:
+- One concise version.
+- One detailed version.
+
+The About section should:
+- Clearly explain my transition from DevOps toward Data Science and AI/ML.
+- Mention Python, SQL, machine learning, data analysis, or other technologies only if I actually know them.
+- Include my strongest projects.
+- Show that I can combine software engineering, cloud, deployment, and AI skills.
+- Include a clear but professional statement about the roles I am seeking.
+- Avoid generic phrases and unsupported claims.
+- Use relevant recruiter keywords naturally.
+
+D. Skills section
+
+Create three groups:
+
+1. Add now:
+   Skills I can already support with projects, coursework, or practical work.
+
+2. Keep from DevOps:
+   Skills that remain relevant to Data Engineering, ML Engineering, MLOps, and cloud-based AI systems.
+
+3. Learn next:
+   Skills that would strengthen my profile but must not be presented as current expertise until I can demonstrate them.
+
+Prioritize the top 15 skills in the correct order.
+
+E. Project rewriting
+
+Rewrite each project using this format:
+
+Project title:
+One-line impact statement:
+Problem:
+What I built:
+Technologies:
+How it demonstrates relevance to Data Science/AI/ML:
+GitHub link:
+Evidence or measurable result:
+
+Do not invent metrics. If a metric is missing, write [add verified metric] instead.
+
+For my AI Video Assistant project, explain it accurately as a project involving:
+- Audio/video processing
+- Faster-Whisper transcription
+- Transcript summarization
+- Action-item and decision extraction
+- Chroma vector storage
+- Retrieval-augmented generation
+- Groq API
+- Streamlit, if applicable
+
+F. Featured section
+
+Recommend exactly what I should feature:
+- GitHub repositories
+- A demo or deployed application
+- Technical posts
+- Certificates
+- A project walkthrough
+
+Order them by importance for Data Science and AI/ML recruiters.
+
+G. Open to Work configuration
+
+Recommend:
+- Three to five target job titles
+- Work types
+- Locations
+- Whether to use the private recruiter-only option or public option
+- A short explanation for each recommendation
+
+H. Job-search keyword plan
+
+Create Boolean search strings for LinkedIn Jobs and LinkedIn Posts, such as:
+
+- Entry-level Data Scientist
+- Machine Learning Intern
+- AI/ML Intern
+- Junior Data Analyst
+- MLOps Intern
+- Data Engineer Intern
+
+Include location and internship variations.
+
+I. Networking plan
+
+Create a practical 30-day networking plan.
+
+The plan must include:
+
+- How to find relevant professionals
+- How to use alumni search
+- How to identify recruiters and hiring managers
+- How to engage with posts
+- How many meaningful comments to write each week
+- How many personalized connection requests to send
+- How long to wait before following up
+- How to track conversations
+
+Do not recommend mass-connecting, copying the same message, spamming recruiters, or immediately asking every connection for a referral.
+
+J. Connection messages
+
+Write separate short messages for:
+
+1. Alumni
+2. Data scientist
+3. Machine learning engineer
+4. AI engineer
+5. Technical recruiter
+6. Hiring manager
+7. Person who posted an internship or job
+8. Someone whose technical post I found useful
+
+Messages should:
+- Be personalized.
+- Stay concise.
+- Mention a specific reason for connecting.
+- Focus on learning or genuine interest first.
+- Avoid asking for a job in the first message.
+
+K. Follow-up messages
+
+Write:
+- A message after someone accepts my request.
+- A message after five to seven days if there is no response.
+- A polite message asking about a role only after I have established context.
+- A thank-you message after receiving advice.
+
+L. Content strategy
+
+Create a weekly LinkedIn content plan with:
+
+- Two technical posts.
+- One project or learning update.
+- One thoughtful comment strategy.
+- Suggested topics connected to my real projects.
+- Three sample posts I can publish without exaggerating my expertise.
+
+Use my AI Video Assistant project as one content theme, but do not reveal API keys, private data, or unsupported claims.
+
+M. Final audit
+
+At the end, provide:
+
+- The five highest-priority profile changes.
+- Keywords that should be removed or reduced from my old DevOps positioning.
+- Keywords that should be added.
+- Claims that require evidence before publishing.
+- A checklist I can complete in order.
+- A warning if any section sounds misleading or over-optimized.
+
+Important rules:
+
+- Do not invent experience.
+- Do not invent employment history.
+- Do not claim production-scale systems unless I prove them.
+- Do not add technologies only because they are popular.
+- Do not remove DevOps entirely; reposition it as a supporting strength for cloud, MLOps, deployment, and AI systems.
+- Ask follow-up questions whenever information is missing.
