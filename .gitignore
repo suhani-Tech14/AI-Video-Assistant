@@ -1,16 +1,41 @@
-@"
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
 .venv/
 venv/
 env/
-__pycache__/
-*.py[cod]
+
+# Environment variables / API keys
 .env
-downloads/
-*.wav
-*.mp3
-*.m4a
-*.webm
-*_chunks/
+.env.*
+!.env.example
+
+# Hugging Face / model cache
+hf-cache/
 .cache/
-"@ | Set-Content .gitignore
-tempCodeRunnerFile.py
+huggingface/
+*.safetensors
+*.bin
+
+# Vector database / generated database
+vector_db/
+chroma_db/
+
+# Downloaded media / generated files
+downloads/
+outputs/
+
+# Temporary files
+*.tmp
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
