@@ -71,3 +71,70 @@ Generates structured insights from the transcript using an LLM:
 - Displays analysis results and the complete transcript.
 - Provides an interactive RAG-based question-answering interface.
 
+## 🔄 How the Application Works
+
+The application follows a sequential processing pipeline that converts raw video or audio into structured insights and a searchable knowledge base.
+
+```mermaid
+flowchart TD
+    A[Input Media<br/>YouTube URL or Local File]
+    B[Audio Processing<br/>Download and Convert to WAV]
+    C[Audio Chunking<br/>FFmpeg]
+    D[Speech-to-Text<br/>Faster-Whisper]
+    E[Complete Transcript]
+
+    F[AI Analysis]
+    F1[Title]
+    F2[Summary]
+    F3[Action Items]
+    F4[Key Decisions]
+    F5[Open Questions]
+
+    G[Vector Store]
+    G1[Transcript Chunks]
+    G2[Hugging Face Embeddings]
+    G3[ChromaDB]
+    G4[Similarity Retriever]
+
+    H[User Question]
+    I[RAG Question Answering]
+    J[Groq LLM<br/>openai/gpt-oss-20b]
+    K[Streamlit UI<br/>and CLI Output]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+
+    E --> F
+    F --> F1
+    F --> F2
+    F --> F3
+    F --> F4
+    F --> F5
+
+    E --> G
+    G --> G1
+    G1 --> G2
+    G2 --> G3
+    G3 --> G4
+
+    H --> I
+    G4 --> I
+    I --> J
+    J --> K
+
+    F --> K
+```
+
+### Main Modules
+
+| Stage | Project Modules |
+|---|---|
+| Audio processing | `utils/audio_processor.py` |
+| Transcription | `core/transcriber.py` |
+| AI analysis | `core/summarizer.py`, `core/extractor.py` |
+| Vector storage | `core/vector_store.py` |
+| RAG question answering | `core/rag_engine.py` |
+| Application entry points | `main.py`, `app.py` |
+
