@@ -75,6 +75,8 @@ Generates structured insights from the transcript using an LLM:
 
 The application follows a sequential processing pipeline that converts raw video or audio into structured insights and a searchable knowledge base.
 
+
+
 ```mermaid
 flowchart TD
     A[Input Media<br/>YouTube URL or Local File]
@@ -126,6 +128,10 @@ flowchart TD
 
     F --> K
 ```
+
+
+
+
 
 ### Main Modules
 
