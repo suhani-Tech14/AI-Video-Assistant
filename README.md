@@ -593,7 +593,48 @@ To run the processing pipeline outside the Streamlit interface:
 ```bash
 python main.py
 ```
-- 
+## 🚀 Usage
+
+### 1. Start the Application
+
+Run the following command from the project root:
+
+```bash
+python -m streamlit run app.py
+```
+
+Open the local URL displayed in the terminal to access the application.
+
+### 2. Analyse a Video
+
+1. Provide a YouTube video URL or a supported local media file path.
+2. Select the transcription language: English or Hinglish.
+3. Click **Analyse** to start processing.
+4. Wait for audio processing, transcription, and AI analysis to complete.
+5. Review the generated title, summary, action items, key decisions, open questions, and transcript.
+
+### 3. Ask Questions About the Video
+
+1. Enter a question about the processed video in the RAG chat interface.
+2. Submit the question.
+3. Review the answer generated using relevant transcript context.
+
+The answers depend on the available transcript content and the successful execution of the retrieval and language-model pipeline.
+
+## 📸 Screenshots
+## 📸 Screenshots
+
+### Application Interface
+![Application Interface](docs/Screenshots/Front.png)
+
+### Video Summary
+![Video Summary](docs/Screenshots/summary.png)
+
+### RAG-Based Question Answering
+![RAG Chat](docs/Screenshots/chat.png)
+
+
+
 
 
 
