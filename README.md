@@ -523,6 +523,78 @@ The main components work together as follows:
 - **Main processing pipeline:** `main.py`
 - **Pipeline testing:** `test.py
 
+---
+
+## ⚙️ Installation & Setup
+
+Follow these steps to set up and run the AI Video Assistant on your local machine.
+
+### 1. Clone the Repository
+
+```bash
+git clone [https://github.com/suhani-Tech14/AI-Video-Assistant.git](https://github.com/suhani-Tech14/AI-Video-Assistant.git)
+cd AI-Video-Assistant
+```
+
+### 2. Create a Virtual Environment
+
+```bash
+python -m venv .venv
+```
+
+Activate the environment on Windows:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+### 3. Install FFmpeg
+
+FFmpeg is required for audio conversion and processing. Install it and ensure that it is available in your system's PATH.
+
+Verify the installation:
+
+```bash
+ffmpeg -version
+```
+
+### 4. Install Dependencies
+
+```bash
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+### 5. Configure Environment Variables
+
+Create a `.env` file in the project's root directory and add the API keys required by the application.
+
+```env
+GROQ_API_KEY=your_groq_api_key
+SARVAM_API_SUBSCRIPTION_KEY=your_sarvam_api_key
+```
+
+Replace the placeholder values with your actual API keys. Check `core/summarizer.py` and `core/transcriber.py` to confirm the exact environment-variable names used by your current code.
+
+**Important:** Never upload your `.env` file or expose your API keys on GitHub.
+
+### 6. Run the Streamlit Application
+
+```bash
+python -m streamlit run app.py
+```
+
+Open the local URL displayed in your terminal to access the application.
+
+### 7. Run the Command-Line Pipeline (Optional)
+
+To run the processing pipeline outside the Streamlit interface:
+
+```bash
+python main.py
+```
+- 
+
 
 
 
