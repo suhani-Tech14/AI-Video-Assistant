@@ -622,17 +622,23 @@ Open the local URL displayed in the terminal to access the application.
 The answers depend on the available transcript content and the successful execution of the retrieval and language-model pipeline.
 
 ## 📸 Screenshots
-## 📸 Screenshots
 
 ### Application Interface
 ![Application Interface](docs/Screenshots/Front.png)
+
+| Video Input | Processing Status |
+|---|---|
+| ![Video input interface](docs/Screenshots/font.png) | ![Video processing status](docs/Screenshots/processing.png) |
 
 ### Video Summary
 ![Video Summary](docs/Screenshots/summary.png)
 
 ### RAG-Based Question Answering
-![RAG Chat](docs/Screenshots/chat.png)
+![RAG Chat](docs/Screenshots/chatF.png)
 
+| Question and Answer | Follow-up Conversation |
+|---|---|
+| ![RAG question and answer](docs/Screenshots/chat1.png) | ![RAG follow-up conversation](docs/Screenshots/chat.png) 
 
 
 
