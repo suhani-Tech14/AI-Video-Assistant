@@ -640,6 +640,47 @@ The answers depend on the available transcript content and the successful execut
 |---|---|
 | ![RAG question and answer](docs/Screenshots/chat1.png) | ![RAG follow-up conversation](docs/Screenshots/chat.png) 
 
+##  Environment Variables and API Configuration
+
+The application requires API credentials for LLM-based analysis and Hinglish speech-to-text.
+
+Create a `.env` file in the project root directory and configure the required environment variables:
+
+```env
+GROQ_API_KEY=your_groq_api_key
+SARVAM_API_KEY=your_sarvam_api_key
+```
+
+### API Configuration
+
+- **Groq API:** Used for video summarization, title generation, structured information extraction, and RAG-based question answering.
+- **Sarvam AI API:** Used for Hinglish speech-to-text processing.
+- 
+### Security Notes
+
+- Replace the placeholder values with your own API keys.
+- Never upload your `.env` file or expose API keys on GitHub.
+- Ensure `.env` is included in `.gitignore`.
+
+## ⚠️ Important Notes
+
+- FFmpeg must be installed and accessible through the system PATH.
+- A valid Groq API key is required for LLM-based analysis and RAG question answering.
+- A valid Sarvam AI API key is required for Hinglish transcription.
+- The first run may take longer while the embedding model is downloaded.
+- Downloaded media and the local vector database are generated locally and may not be included in the GitHub repository.
+
+## 🔮 Future Improvements
+
+- Support for additional transcription languages.
+- Improved processing for long videos.
+- Export summaries and action items to downloadable reports.
+- Enhanced conversational memory for follow-up questions.
+
+
+
+
+
 
 
 
